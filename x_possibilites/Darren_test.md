@@ -13,7 +13,7 @@ data("iris")
 ```
 
 ## Inspecting the dataset
-This dataset contains Sepal and Petal length / width of different Specieis of flowers __Iris setosa__, __versicolor__, and __virginica__
+This dataset contains Sepal and Petal length / width of different Specieis of flowers _Iris setosa_, _versicolor_, and _virginica_
 
 We can thus inspect the dataset like this:
 
