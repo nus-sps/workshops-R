@@ -4,6 +4,33 @@ sort: 12
 
 # Darren Test Play ground page thing 
 
+# Loading in iris dataset
+
+We can try loading in the built-in dataset called "iris" in R. Like so:
+
+```
+data("iris")
+```
+
+## Inspecting the dataset
+This dataset contains Sepal and Petal length / width of different Specieis of flowers __Iris setosa__, __versicolor__, and __virginica__
+
+We can thus inspect the dataset like this:
+
+```
+head(iris)
+```
+| ID | Sepal.Length  | Sepal.Width  | Petal.Length  | Petal.Width  | Species  |
+| -- | -------- | -------- | -------- | -------- | -------- |
+| 1 | 5.1 | 3.5 | 1.4 | 0.2 | setosa |
+| 2 | 4.9 | 3.0 | 1.4 | 0.2 | setosa |
+| 3 | 4.7 | 3.2 | 1.3 | 0.2 | setosa |
+| 4 | 4.6 | 3.1 | 1.5 | 0.2 | setosa |
+| 5 | 5.0 | 3.6 | 1.4 | 0.2 | setosa |
+| 6 | 5.4 | 3.9 | 1.7 | 0.4 | setosa |
+
+
+
 Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
 
 There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.
