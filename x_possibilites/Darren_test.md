@@ -47,13 +47,14 @@ Perhaps you have this dataset, you think `Sepal.Length` and `Petal.Width` are re
 plot(iris$Sepal.Length, iris$Petal.Width)
 ```
 
-![SLvsPw](http://sps.nus.edu.sg/wp-content/uploads/2021/07/irisSepalvsPetal.jpg)
+![SLvsPw](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/irisSepalvsPetal.jpg)
 
 Awesome! There seems to be some sort of association. What if we want to explore other combinations of our variables, such as `Sepal.Length` vs `Petal.Length` and so on and so forth? Luckily for us R has a function called `pairs()` to help us!
 
 ```R
 pairs(iris, panel = panel.smooth)
 ``` 
+![irisPairsPlot](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/pairsiris.jpg)
 
 Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
 
