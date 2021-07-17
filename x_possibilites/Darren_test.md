@@ -46,15 +46,20 @@ Perhaps you have this dataset, you think `Sepal.Length` and `Petal.Width` are re
 ```R
 plot(iris$Sepal.Length, iris$Petal.Width)
 ```
-
 ![SLvsPw](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/irisSepalvsPetal.jpg)
 
-Awesome! There seems to be some sort of association. What if we want to explore other combinations of our variables, such as `Sepal.Length` vs `Petal.Length` and so on and so forth? Luckily for us R has a function called `pairs()` to help us!
+Awesome! There seems to be some sort of association. What if we want to explore other combinations of our variables, such as `Sepal.Length` vs `Petal.Length` and so on and so forth? Luckily for us R has a function called `pairs()` to help us! By adding `panel = panel.smooth`, R would help us generate a "smooth" curve to help us better visualise correlations!
 
 ```R
 pairs(iris, panel = panel.smooth)
 ``` 
 ![irisPairsPlot](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/pairsiris.jpg)
+
+It seems that `Petal.Length` and `Petal.Width` has the strongest positive association from each other. This is to be expected as we would expect a flower with a longer petal length to have a longer petal width as well.
+
+It also seems that `Sepal.Length` and `Petal.Length` have some sort of correlation as well. Lets use these two variables for our examples later!
+
+
 
 Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
 
