@@ -36,7 +36,7 @@ The next step in exploring datasets is to know and understand what the different
 ### Optional Information
 The dataset numbers are all in centimeters (cm), and the different variables should look foreign to people not well versed in plant morphology. Luckily for us, since this is a well-known dataset, the internet should have figures explaining what each variables mean.
 
-[iris_variable_explain](https://static.packt-cdn.com/products/9781789539462/graphics/9cede6e3-0932-430a-a17e-d30025eb2b02.png)
+![iris_variable_explain](https://static.packt-cdn.com/products/9781789539462/graphics/9cede6e3-0932-430a-a17e-d30025eb2b02.png)
 How handy! [This website](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781789539462/3/ch03lvl1sec17/text-classification) contains an image on what Sepal / Petal length and widths mean for each row!
 
 ## Testing some variable
@@ -45,7 +45,7 @@ Perhaps you have this dataset, you think `Sepal.Length` and `Petal.Width` are re
 ```R
 plot(iris$Sepal.Length, iris$Petal.Width)
 ```
-[iris_SepalLengthvsPetalWidth](http://sps.nus.edu.sg/wp-content/uploads/2021/07/irisSepalvsPetal.jpg)
+![iris_SepalLengthvsPetalWidth](http://sps.nus.edu.sg/wp-content/uploads/2021/07/irisSepalvsPetal.jpg)
 
 
 Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
