@@ -126,9 +126,6 @@ Great, this is the exact same graph as above. Except this has **COLOUR**. There 
 The first issue that is very obvious is that the labels on the x- and y-axis are very small and may not be readable by people. So let us change that using `theme()`:
 
 ```R
-
-
-
 #Once again, there are two ways of doing this, you can either build the graph in 1 go 
 iris_PetalLengthvsSepalLength = ggplot(iris, aes(x=Sepal.Length, y = Petal.Length)) +
                                 geom_point() + theme() +
@@ -140,6 +137,9 @@ iris_PetalLengthvsSepalLength = ggplot(iris, aes(x=Sepal.Length, y = Petal.Lengt
 #Or make it modular
 iris_PetalLengthvsSepalLength = iris_PetalLengthvsSepalLength + theme() +  theme(axis.text=element_text(size=20))
 iris_PetalLengthvsSepalLength = iris_PetalLengthvsSepalLength + theme(axis.title=element_text(size=25))
+
+#Like always lets view iris_PetalLengthvsSepalLength
+iris_PetalLengthvsSepalLength
 ```
 ![Change_Label_Size](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/PLvsSLChangeSize.jpg)
 
@@ -157,7 +157,6 @@ Luckily for us, since the dataframe is named appropriately, most readers would k
 
 Lets rename the axis so that they portray the right information from the get go.
 ```R
-
 #You can either do this
 iris_PetalLengthvsSepalLength = ggplot(iris, aes(x=Sepal.Length, y = Petal.Length)) +
                                 geom_point() + theme() +
@@ -167,6 +166,9 @@ iris_PetalLengthvsSepalLength = ggplot(iris, aes(x=Sepal.Length, y = Petal.Lengt
 
 #or do this if you already have iris_PetalLengthvsSepalLength defined earlier.
 iris_PetalLengthvsSepalLength = iris_PetalLengthvsSepalLength + xlab('Length of Sepal (cm)') + ylab('Length of Petal (cm)')
+
+#Like always lets view iris_PetalLengthvsSepalLength
+iris_PetalLengthvsSepalLength
 ```
 ![Renamed_Axis_include_units](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PetalLengthvsSepalLengthAxisLabels.jpg)
 
@@ -191,14 +193,51 @@ iris_PetalLengthvsSepalLength = ggplot(iris, aes(x=Sepal.Length, y = Petal.Lengt
 iris_PetalLengthvsSepalLength = iris_PetalLengthvsSepalLength + labs(title = "Length of Petals (cm) vs Length of Sepals (cm)", subtitle = subtitle_iris)
 iris_PetalLengthvsSepalLength = iris_PetalLengthvsSepalLength + theme(plot.title  = element_text(size=30))
 iris_PetalLengthvsSepalLength = iris_PetalLengthvsSepalLength + theme(plot.subtitle  = element_text(size=20))
+
+#Like always lets view iris_PetalLengthvsSepalLength
+iris_PetalLengthvsSepalLength
 ```
 ![Added_TitlenSubtitle](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PLvsSLTitle.jpg)
 
+
+> Editor note: I had to increase the size of the graph here while saving so I changed the size of the points by using the command `geom_point(size = 4)`
+
+
+Cool, our checklist is done!
 - [x] Label size for the numbers
 - [x] Naming of X- and Y-axis
 - [x] Title / subtitle
 
+### Giving meaning to the graph
 
+Ok we have a decent graph generated, but it does not really tell the reader anything. Linking back to our research question, we want to show that there is a linear association between length of petal and length of sepal of various _Iris_ flower species. The easiest way we can do this is by adding a best-fit linear regression line!
+
+```R
+#Once again, you can do this 
+iris_PetalLengthvsSepalLength = ggplot(iris, aes(x=Sepal.Length, y = Petal.Length)) +
+                                geom_point() + theme() +
+                                theme(axis.text=element_text(size=20)) + 
+                                theme(axis.title=element_text(size=25)) +
+                                xlab('Length of Sepal (cm)') + ylab('Length of Petal (cm)') + 
+                                labs(title = "Length of Petals (cm) vs Length of Sepals (cm)", subtitle = subtitle_iris) +
+                                theme(plot.title  = element_text(size=30)) +
+                                theme(plot.subtitle  = element_text(size=20)) +
+                                stat_smooth(method='lm')
+
+#Or do this to add on
+iris_PetalLengthvsSepalLength = iris_PetalLengthvsSepalLength + stat_smooth(method='lm')
+
+
+#Like always lets view iris_PetalLengthvsSepalLength
+iris_PetalLengthvsSepalLength
+
+#The dark grey borders around the blue linear line indicates the confidence interval for each point on that line.
+#If you would like to remove, you can use this function call
+#stat_smooth(method='lm', se = FALSE) instead of stat_smooth(method='lm')
+```
+![Added_stat_smooth_line](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PLvsSLLMline.jpg)
+
+Awesome! With one look, readers can tell exactly what they are looking at and what message you would want them to takeaway! In this case, as `Sepal Length` increases `Petal Length increases`
 
 Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
 
