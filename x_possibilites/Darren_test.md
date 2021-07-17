@@ -70,6 +70,46 @@ It seems to me that Petal Length and Sepal Length have a linear positive correla
 
 If you were Ronald Fisher and wanted to present about the positive correlation of Sepal Length with Petal Length by using the graph presented above, you will probably be shot.
 
+Luckily, since most of the R community have agreed that base R plotting is terrible for presentations. A very handy package called `ggplot2`
+
+If you have not installed `ggplot2` in R, you can install it using the following command then load it in.
+
+```R
+install.packages("ggplot2") #This is only if you have not installed it before
+library(ggplot2)
+```
+
+The cool thing about `ggplot2` is that it allows for a very "modular" way of adding to the graph. We first specify the dataframe in which ggplot should look in, in our case `iris`, followed by the "global" aesthetics layer using `aes()`.
+
+We want our x-axis to be `Sepal.Length` and y-axis to be `Petal.Length`
+
+So our base syntax for our example would look like this:
+
+```R
+iris_PetalLengthvsSepalLength = ggplot(iris, aes(x=Sepal.Length, y = Petal.Length))
+
+#To view the graph you can just run
+iris_PetalLengthvsSepalLength
+```
+
+![blankggplot](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/Blankggplot2.jpg)
+
+As you can tell, the plot is blank! This is because we only told `ggplot` to initialise a blank canvas, the next thing we want `ggplot` to do is to add our points! We can do this by using this `geom_point()`:
+
+```R
+#There are two ways to do this. The first way is 
+iris_PetalLengthvsSepalLength = ggplot(iris, aes(x=Sepal.Length, y = Petal.Length)) +
+                                geom_point()
+
+#The second way is, assuming you already defined the variable of iris_PetalLengthvsSepalLength before,
+iris_PetalLengthvsSepalLength = iris_PetalLengthvsSepalLength + geom_point()
+
+#Like always lets view iris_PetalLengthvsSepalLength
+iris_PetalLengthvsSepalLength
+```
+![geompointExample](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PetalLengthvsSepalLength.jpg)
+
+
 Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
 
 There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.
