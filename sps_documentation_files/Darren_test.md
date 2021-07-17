@@ -314,6 +314,47 @@ grid.arrange(iris_PetalvsSpecies,iris_SepalvsSpecies,ncol=2)
 ```
 ![grid_arrange_boxplots](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PetalvsSpeciesvsSepal.jpg)
 
+It is clear that there is some form of association between both `Sepal.Length` and `Petal.Length` and `Species`, with _I. virginicca_ having the longest `Petal.Length` and `Sepal.Length` and _I. Setosa_ having the shortest.
+
+how do we combine all these information together into a single graph?
+
+## Visualising a continuous variable vs continous variable grouped by categorical variable data
+
+From two sections ago, we could see, on average across all species of _Iris_ flowers, `Sepal.Length` is positively associated with `Petal.Length`. However, we have to be careful with this conclusion as it is prone to **ecological fallacy**. As we are making conclusions on a group and we might conclude this same trend **within** each species of _Iris_ flowers.
+
+So, you might be asking, how do we visualise this when we only have x- and y-axis on a graph? The secret lies in the **COLOR** or **SHAPE** of each data point!
+
+Let me show you what I mean, remember our previous code?
+
+```R
+iris_PetalLengthvsSepalLength = ggplot(iris, aes(x=Sepal.Length, y = Petal.Length)) +
+                                geom_point() + theme() +
+                                theme(axis.text=element_text(size=20)) + 
+                                theme(axis.title=element_text(size=25)) +
+                                xlab('Length of Sepal (cm)') + ylab('Length of Petal (cm)') + 
+                                labs(title = "Length of Petals (cm) vs Length of Sepals (cm)", subtitle = subtitle_iris) +
+                                theme(plot.title  = element_text(size=30)) +
+                                theme(plot.subtitle  = element_text(size=20)) +
+                                stat_smooth(method='lm', se = FALSE)
+```
+
+We can add an additional argument in the global `aes()` layer to group all points by species by other **COLOR** or **SHAPE** like so:
+
+```R
+#Grouping by colour
+iris_PLSL_col = ggplot(iris, aes(x=Sepal.Length, y = Petal.Length, col = Species)) +
+                                geom_point() + theme() +
+                                theme(axis.text=element_text(size=20)) + 
+                                theme(axis.title=element_text(size=25)) +
+                                xlab('Length of Sepal (cm)') + ylab('Length of Petal (cm)') + 
+                                labs(title = "Length of Petals (cm) vs Length of Sepals (cm)", subtitle = subtitle_iris) +
+                                theme(plot.title  = element_text(size=30)) +
+                                theme(plot.subtitle  = element_text(size=20)) +
+                                stat_smooth(method='lm', se = FALSE)
+
+#If you would like to group by shape, the argument col can be changed from col to shape.                           
+```
+![group_by_species](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PLSL_col.jpg)
 
 Wow! It seems like all three species of _Iris_ are positively associated. With red being _I. Setosa_, green being _I. Versicolor_ and blue being _I. virginica_. There is one thing left! Thats right, the legend size. Lets fix that real quick
 
@@ -334,6 +375,8 @@ Amazing! With this graph, this looks beautiful. At first glance, anyone can imme
 - _I. virginica_ have the longest Petal and Sepal on average as compared to the other three species
 
 Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
+
+# End
 
 There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.
 
