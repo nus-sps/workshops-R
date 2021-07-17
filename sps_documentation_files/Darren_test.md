@@ -234,6 +234,7 @@ iris_PetalLengthvsSepalLength
 #The dark grey borders around the blue linear line indicates the confidence interval for each point on that line.
 #If you would like to remove, you can use this function call
 #stat_smooth(method='lm', se = FALSE) instead of stat_smooth(method='lm')
+#the method = 'lm' here specifies which model to fit the data with!
 ```
 ![Added_stat_smooth_line](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PLvsSLLMline.jpg)
 
@@ -243,8 +244,31 @@ Let us compare with our base graph from earlier to the one we have now!
 
 Awesome! With one look, readers can tell exactly what they are looking at and what message you would want them to takeaway! In this case, as `Sepal Length` increases, `Petal Length` increases. 
 
+#### Additional info
 
+In the event that you have other ways you would like to fit your data (since not all data are linearly associated), you can still fit your data after generating a model. In this example, I have generated a linear regression model, but it can be any type of model and it'll still work!
 
+```R
+#Generating the simplest linear regression model
+iris_lm = lm(Petal.Length ~ Sepal.Length, data = iris)
+summary(iris_lm)
+
+#Generating datapoints and putting them in the same dataframe as iris for accessibility
+iris.predict = cbind(iris, predict(iris_lm, interval = 'confidence'))
+iris_withlm = ggplot(iris.predict, aes(x=Sepal.Length, y = Petal.Length))+
+              geom_point(size = 4) + 
+              geom_line(aes(Sepal.Length, fit),color="blue", size = 1.5) + theme() +
+              theme(axis.text=element_text(size=20)) + 
+              theme(axis.title=element_text(size=25)) +
+              xlab('Length of Sepal (cm)') + ylab('Length of Petal (cm)') + 
+              labs(title = "Length of Petals (cm) vs Length of Sepals (cm)", subtitle = subtitle_iris) +
+              theme(plot.title  = element_text(size=30)) +
+              theme(plot.subtitle  = element_text(size=20)) 
+
+iris_withlm
+```
+
+## Plotting >2 variables on a single graph
 
 
 Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
