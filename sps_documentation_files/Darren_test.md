@@ -110,6 +110,30 @@ iris_PetalLengthvsSepalLength
 ![geompointExample](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PetalLengthvsSepalLength.jpg)
 
 
+Great, this is the exact same graph as above. Except this has **COLOUR**. There are a few things we can do to make this graph look more presentable.
+
+- [ ] Y-axis and X-axis naming
+- [ ] Title
+- [ ] Label size for the numbers
+
+
+Luckily for us, since the dataframe is named appropriately, most readers would know the x- and y-axis are representing Sepal and Petal length. **BUT**, readers would not know the units. It is often good practice to rename your axis to be readable by everyone.
+
+Lets rename the axis so that they portray the right information from the get go.
+```R
+
+#You can either do this
+iris_PetalLengthvsSepalLength = ggplot(iris, aes(x=Sepal.Length, y = Petal.Length)) +
+                                geom_point() + xlab('Length of Sepal (cm)') + ylab('Length of Petal (cm)')
+
+#or do this.
+iris_PetalLengthvsSepalLength = iris_PetalLengthvsSepalLength + xlab('Length of Sepal (cm)') + ylab('Length of Petal (cm)')
+```
+![Renamed_Axis_include_units](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PetalLengthvsSepalLengthAxisLabels.jpg)
+
+
+
+
 Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
 
 There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.
