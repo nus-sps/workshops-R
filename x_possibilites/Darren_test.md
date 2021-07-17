@@ -2,7 +2,7 @@
 sort: 12
 ---
 
-# Darren Test Play ground page thing 
+# Visualisation of Data using R
 
 # Loading in iris dataset
 
@@ -59,6 +59,7 @@ It seems that `Petal.Length` and `Petal.Width` has the strongest positive associ
 
 It also seems that `Sepal.Length` and `Petal.Length` have some sort of correlation as well. Lets use these two variables for our examples later!
 
+## Beautifying the graphs
 
 
 Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
