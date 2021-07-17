@@ -315,6 +315,23 @@ grid.arrange(iris_PetalvsSpecies,iris_SepalvsSpecies,ncol=2)
 ![grid_arrange_boxplots](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PetalvsSpeciesvsSepal.jpg)
 
 
+Wow! It seems like all three species of _Iris_ are positively associated. With red being _I. Setosa_, green being _I. Versicolor_ and blue being _I. virginica_. There is one thing left! Thats right, the legend size. Lets fix that real quick
+
+```R
+iris_PLSL_col = iris_PLSL_col + theme(legend.text = element_text(size = 20)) + theme( legend.title = element_text(size = 25))
+#There are other aspects you can tweak for the legend, such as background colour and location!
+
+
+iris_PLSL_col
+```
+![Rescaled_Legend](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PLSL_col_legend.jpg)
+
+Amazing! With this graph, this looks beautiful. At first glance, anyone can immediately understand the following points:
+
+- Each species of _Iris_ flower, the `Petal Length` and `Sepal Length` are positively associated
+- Weak association for _I. setosa_ 
+- Strong association for _I. versicolor_ and _I. virginica_
+- _I. virginica_ have the longest Petal and Sepal on average as compared to the other three species
 
 Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
 
