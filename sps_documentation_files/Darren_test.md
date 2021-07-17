@@ -268,7 +268,52 @@ iris_withlm = ggplot(iris.predict, aes(x=Sepal.Length, y = Petal.Length))+
 iris_withlm
 ```
 
-## Plotting >2 variables on a single graph
+## Visualising Categorical Variables
+In the previous section, both variables shown are continuous variables. Meaning they could take any number. What if one of the variables is categorical, like `Species`?
+
+In the `pairs()` plot that is provided all the way to the top, you would notice that the `Species` of _Iris_ has some form of correlation with both `Sepal.Length` and `Petal.Length`.
+
+So, if our research question was to investigate the `Sepal.Length` and `Petal.Length` (continuous variable) between `Species` (categorical variables), we can modify some of our code from the previous section to work!
+
+One of the ways to visualise continous variables against categorical variables, is to use a boxplot.
+
+For the sake of simplicity of the tutorial, I would not be adding `theme()`.
+```R
+#This was the previous code showing continous variable against another continuous variable
+iris_PetalLengthvsSepalLength = ggplot(iris, aes(x=Sepal.Length, y = Petal.Length)) +
+                                geom_point() +
+                                stat_smooth(method='lm')
+
+iris_PetalvsSpecies = ggplot(iris, aes(x = Species, y = Petal.Length)) +
+                      geom_boxplot()
+
+iris_SepalvsSpecies = ggplot(iris, aes(x = Species, y = Sepal.Length)) +
+                      geom_boxplot()
+
+#Call these two graphs to view them... right?
+iris_PetalvsSpecies
+iris_SepalvsSpecies                      
+```
+
+### Plotting 2 ggplot graphs in the same window
+
+Oh no problem, we cannot visualise these two graphs at the same time! Your first instinct might be to use `par(mfrow=c(1,2))` but that will not work for `ggplot2` graphs. What we need is `gridExtra`
+
+Install `gridExtra` and load it if you have not:
+
+```R
+install.packages('gridExtra')
+library(gridExtra)
+```
+
+Then displaying the graphs is as simple as 1 line of code:
+```R
+grid.arrange(iris_PetalvsSpecies,iris_SepalvsSpecies,ncol=2)
+#There are fancier ways of arranging your graphs using grid.arrange() using matrices
+#But I will not be covering it here as it will take very long
+```
+![grid_arrange_boxplots](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PetalvsSpeciesvsSepal.jpg)
+
 
 
 Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
