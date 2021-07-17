@@ -175,7 +175,7 @@ iris_PetalLengthvsSepalLength
 Awesome, now with one look, readers can guess what the graph is about. But to make it even clearer, we will need to add a title or a subtitle to the graph:
 
 ```R
-#Because Iris is the genus, when typing it, they need to be italicised this code snippet below will give you an example
+#Because Iris is the genus, when typing it, they need to be italicised this code snippet below will give you an example.
 subtitle_iris = expression(paste("of various ",italic("Iris "), 'flower species'))
 
 #Once again, you can do this 
@@ -242,6 +242,10 @@ Let us compare with our base graph from earlier to the one we have now!
 ![comparison_base_ggplot](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/comparisonggplotbase.png)
 
 Awesome! With one look, readers can tell exactly what they are looking at and what message you would want them to takeaway! In this case, as `Sepal Length` increases, `Petal Length` increases. 
+
+
+
+
 
 Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
 
