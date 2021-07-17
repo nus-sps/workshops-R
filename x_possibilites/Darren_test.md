@@ -59,6 +59,11 @@ It seems that `Petal.Length` and `Petal.Width` has the strongest positive associ
 
 It also seems that `Sepal.Length` and `Petal.Length` have some sort of correlation as well. Lets use these two variables for our examples later!
 
+But first, let us plot this graph to see whats going on in more detail!
+![SLvsPL](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/irisSepalLvsPetalL.jpg)
+
+It seems to me that Petal Length and Sepal Length have a linear positive correlation with each other!
+
 ## Beautifying the graphs
 
 
