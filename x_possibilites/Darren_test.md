@@ -68,7 +68,7 @@ It seems to me that Petal Length and Sepal Length have a linear positive correla
 
 ## Beautifying the graphs
 
-If you were 
+If you were Ronald Fisher and wanted to present about the positive correlation of Sepal Length with Petal Length by using the graph presented above, you will probably be shot.
 
 Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
 
