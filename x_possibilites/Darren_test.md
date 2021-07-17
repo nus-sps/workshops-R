@@ -8,7 +8,7 @@ sort: 12
 
 We can try loading in the built-in dataset called "iris" in R. Like so:
 
-```
+```R
 data("iris")
 ```
 
@@ -17,7 +17,7 @@ This dataset contains Sepal and Petal length / width of different Specieis of fl
 
 We can thus inspect the dataset like this:
 
-```
+```R
 head(iris)
 ```
 
