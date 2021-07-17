@@ -15,7 +15,7 @@ data("iris")
 ```
 
 ## Inspecting the dataset
-This dataset contains Sepal and Petal length / width of different Specieis of flowers _Iris setosa_, _versicolor_, and _virginica_
+This dataset contains Sepal and Petal length / width of different Species of flowers _Iris setosa_, _versicolor_, and _virginica_
 
 We can thus inspect the dataset like this:
 
@@ -61,7 +61,12 @@ It seems that `Petal.Length` and `Petal.Width` has the strongest positive associ
 
 It also seems that `Sepal.Length` and `Petal.Length` have some sort of correlation as well. Lets use these two variables for our examples later!
 
-But first, let us plot this graph to see whats going on in more detail!
+## Solidifying our research question
+Before we proceed any further, it is important in any experiment that we have a solid research question in mind. This is because the type of data presented will help answer your research question. 
+
+Lets say we had a basic research question "Are the lengths of the petals associated with the lengths of sepal in _I. setosa_, _I. versicolor_, and _ I. virginica_?" So while we're doing data collection, we collected other variables as well (see table above).
+
+After data collection, we can casually plot `Sepal.Length` against `Petal.Length`.
 ![SLvsPL](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/irisSepalLvsPetalL.jpg)
 
 It seems to me that Petal Length and Sepal Length have a linear positive correlation with each other!
@@ -70,7 +75,7 @@ It seems to me that Petal Length and Sepal Length have a linear positive correla
 
 If you were Ronald Fisher and wanted to present about the positive correlation of Sepal Length with Petal Length by using the graph presented above, you will probably be shot.
 
-Luckily, since most of the R community have agreed that base R plotting is terrible for presentations. A very handy package called `ggplot2`
+Luckily, since most of the R community have agreed that base R plotting is terrible for presentations. A very handy package called `ggplot2` was created.
 
 If you have not installed `ggplot2` in R, you can install it using the following command then load it in.
 
@@ -110,13 +115,44 @@ iris_PetalLengthvsSepalLength
 ![geompointExample](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PetalLengthvsSepalLength.jpg)
 
 
-Great, this is the exact same graph as above. Except this has **COLOUR**. There are a few things we can do to make this graph look more presentable.
+Great, this is the exact same graph as above. Except this has **COLOUR**. There are a few things we can do to make this graph look more presentable. For your information, `geom_point()` can take an additional argument to change the shape and size of your dots if they ever look too small! You can experiment with it yourself, it'll look something like this `geom_point(size = 5, shape = 21)`
 
-- [ ] Y-axis and X-axis naming
-- [ ] Title
 - [ ] Label size for the numbers
+- [ ] Naming of X- and Y-axis
+- [ ] Title / subtitle
 
 
+### Changing the label size
+The first issue that is very obvious is that the labels on the x- and y-axis are very small and may not be readable by people. So let us change that using `theme()`:
+
+```R
+
+
+
+#Once again, there are two ways of doing this, you can either build the graph in 1 go 
+iris_PetalLengthvsSepalLength = ggplot(iris, aes(x=Sepal.Length, y = Petal.Length)) +
+                                geom_point() + theme() +
+                                theme(axis.text=element_text(size=20)) + 
+                                theme(axis.title=element_text(size=25))
+
+
+
+#Or make it modular
+iris_PetalLengthvsSepalLength = iris_PetalLengthvsSepalLength + theme() +  theme(axis.text=element_text(size=20))
+iris_PetalLengthvsSepalLength = iris_PetalLengthvsSepalLength + theme(axis.title=element_text(size=25))
+```
+![Change_Label_Size](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/PLvsSLChangeSize.jpg)
+
+
+`theme(axis.text=element_text(size=20))` changes the numbers on the x- and y-axis whereas `theme(axis.title=element_text(size=25))` changes the size of the x- and y-axis labels!
+
+So to look at our checklist real quick
+- [x] Label size for the numbers
+- [ ] Naming of X- and Y-axis
+- [ ] Title / subtitle
+
+
+### Naming of X- and Y-axis & Title / subtitle
 Luckily for us, since the dataframe is named appropriately, most readers would know the x- and y-axis are representing Sepal and Petal length. **BUT**, readers would not know the units. It is often good practice to rename your axis to be readable by everyone.
 
 Lets rename the axis so that they portray the right information from the get go.
@@ -124,13 +160,43 @@ Lets rename the axis so that they portray the right information from the get go.
 
 #You can either do this
 iris_PetalLengthvsSepalLength = ggplot(iris, aes(x=Sepal.Length, y = Petal.Length)) +
-                                geom_point() + xlab('Length of Sepal (cm)') + ylab('Length of Petal (cm)')
+                                geom_point() + theme() +
+                                theme(axis.text=element_text(size=20)) + 
+                                theme(axis.title=element_text(size=25)) +
+                                xlab('Length of Sepal (cm)') + ylab('Length of Petal (cm)')
 
-#or do this.
+#or do this if you already have iris_PetalLengthvsSepalLength defined earlier.
 iris_PetalLengthvsSepalLength = iris_PetalLengthvsSepalLength + xlab('Length of Sepal (cm)') + ylab('Length of Petal (cm)')
 ```
 ![Renamed_Axis_include_units](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PetalLengthvsSepalLengthAxisLabels.jpg)
 
+Awesome, now with one look, readers can guess what the graph is about. But to make it even clearer, we will need to add a title or a subtitle to the graph:
+
+```R
+#Because Iris is the genus, when typing it, they need to be italicised this code snippet below will give you an example
+subtitle_iris = expression(paste("of various ",italic("Iris "), 'flower species'))
+
+#Once again, you can do this 
+iris_PetalLengthvsSepalLength = ggplot(iris, aes(x=Sepal.Length, y = Petal.Length)) +
+                                geom_point() + theme() +
+                                theme(axis.text=element_text(size=20)) + 
+                                theme(axis.title=element_text(size=25)) +
+                                xlab('Length of Sepal (cm)') + ylab('Length of Petal (cm)') + 
+                                labs(title = "Length of Petals (cm) vs Length of Sepals (cm)", subtitle = subtitle_iris) +
+                                theme(plot.title  = element_text(size=30)) +
+                                theme(plot.subtitle  = element_text(size=20))
+
+
+#Or do this to add on
+iris_PetalLengthvsSepalLength = iris_PetalLengthvsSepalLength + labs(title = "Length of Petals (cm) vs Length of Sepals (cm)", subtitle = subtitle_iris)
+iris_PetalLengthvsSepalLength = iris_PetalLengthvsSepalLength + theme(plot.title  = element_text(size=30))
+iris_PetalLengthvsSepalLength = iris_PetalLengthvsSepalLength + theme(plot.subtitle  = element_text(size=20))
+```
+![Added_TitlenSubtitle](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PLvsSLTitle.jpg)
+
+- [x] Label size for the numbers
+- [x] Naming of X- and Y-axis
+- [x] Title / subtitle
 
 
 
