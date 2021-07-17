@@ -6,7 +6,9 @@ sort: 12
 
 # Loading in iris dataset
 
-We can try loading in the built-in dataset called "iris" in R. Like so:
+For the purposes of this tutorial, we are going to be using the _Iris_ flower dataset introduced by Ronald Fisher in his 1936 paper _The use of multiple measurementsi n taxonomic problems_.
+
+We can try loading in this built-in dataset in R. Like so:
 
 ```R
 data("iris")
@@ -66,6 +68,7 @@ It seems to me that Petal Length and Sepal Length have a linear positive correla
 
 ## Beautifying the graphs
 
+If you were 
 
 Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
 
