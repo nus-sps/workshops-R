@@ -412,6 +412,10 @@ To illustrate this point, I added another grouping factor of `Sepal.Width` for c
 
 On first glance, you cannot instantly tell many information. This example serves to show that "more isn't always better" and that the way the data is presented would aid in the readability of your point.
 
+Now, this is a really exagerrated example of what **NOT** to do...
+![Why_Did_I_do_dis](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PLSL_col_ascinine.jpg)
+
+Theres just too much text / useless information which could have been in a table and it distracts the reader from the main point of the graph...
 
 # End
 
