@@ -3,10 +3,13 @@ sort: 1
 ---
 
 # Visualisation of Data using R
+Author: [Darren Teo](https://www.linkedin.com/in/darren-teo-3125871a1/)
+About the Author: Year 3 student in NUS in Special Programme in Science
+About this tutorial: Just a small little worked example of what one can do to visualise data so people can apply it to their reports / papers / presentations etc. This is by no means an exhaustive list and I am sure there are better ways to go about doing it :))
 
 # Loading in iris dataset
 
-For the purposes of this tutorial, we are going to be using the _Iris_ flower dataset introduced by Ronald Fisher in his 1936 paper _The use of multiple measurementsi n taxonomic problems_.
+For the purposes of this tutorial, we are going to be using the _Iris_ flower dataset introduced by Ronald Fisher in his 1936 paper _The use of multiple measurements in taxonomic problems_.
 
 We can try loading in this built-in dataset in R. Like so:
 
