@@ -3,9 +3,11 @@ sort: 1
 ---
 
 # Visualisation of Data using R
-Author: [Darren Teo](https://www.linkedin.com/in/darren-teo-3125871a1/)
-About the Author: Year 3 student in NUS in Special Programme in Science
-About this tutorial: Just a small little worked example of what one can do to visualise data so people can apply it to their reports / papers / presentations etc. This is by no means an exhaustive list and I am sure there are better ways to go about doing it :))
+**Author**: [Darren Teo](https://www.linkedin.com/in/darren-teo-3125871a1/)
+
+**About the Author**: Year 3 student in NUS in Special Programme in Science
+
+**About this tutorial**: Just a small little worked example of what one can do to visualise data so people can apply it to their reports / papers / presentations etc. This is by no means an exhaustive list and I am sure there are better ways to go about doing it :))
 
 # Loading in iris dataset
 
