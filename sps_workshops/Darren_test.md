@@ -1,5 +1,5 @@
 ---
-sort: 4
+sort: 1
 ---
 
 # Visualisation of Data using R
@@ -73,7 +73,7 @@ It seems to me that Petal Length and Sepal Length have a linear positive correla
 
 ## Beautifying the graphs
 
-If you were Ronald Fisher and wanted to present about the positive correlation of Sepal Length with Petal Length by using the graph presented above, you will probably be shot.
+If you were Ronald Fisher and wanted to present about the positive correlation of Sepal Length with Petal Length by using the graph presented above, you will probably not succeed in getting your point across.
 
 Luckily, since most of the R community have agreed that base R plotting is terrible for presentations. A very handy package called `ggplot2` was created.
 
@@ -374,9 +374,47 @@ Amazing! With this graph, this looks beautiful. At first glance, anyone can imme
 - Strong association for _I. versicolor_ and _I. virginica_
 - _I. virginica_ have the longest Petal and Sepal on average as compared to the other three species
 
-Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
+### Addtional information
+Do note, that there can be **TOO MUCH** information on a single graph. Generally, representing the data on x- and y- axis and grouping the points accordingly by colour is the maximum I would go for any graph.
+
+If I would want to explore another variable that I have collected, I would generate another graph at that point.
+
+
+
+
+
+
+
+
+
+### Saving graphs
+
+To save your `ggplot2` graphs, you can use the following command(s):
+```R
+#Where this image will be saved can be found in the directory after running getwd()
+getwd()
+#alternatively, you can set the working directory using setwd()
+setwd('C:\\My\\New\\Directory')
+
+
+iris_PLSL_col
+ggsave('FILE_NAME.jpg', width = 2096, height = 2096, units = 'px', dpi = 300)
+#more detailed options can be seen after running ?ggsave
+```
+
+If however, you are using the `grid.arrange()` function to generate your graph, you would need to utilise the following commands:
+```R
+jpeg("FILE_NAME.jpg",quality = 100,width = 1028, height = 1028, units = "px")
+grid.arrange(ggplot_graph1,ggplot_graph2,ncol=2)
+dev.off()
+```
+
 
 # End
+
+
+Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
+
 
 There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.
 
