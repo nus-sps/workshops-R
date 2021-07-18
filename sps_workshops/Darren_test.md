@@ -374,18 +374,6 @@ Amazing! With this graph, this looks beautiful. At first glance, anyone can imme
 - Strong association for _I. versicolor_ and _I. virginica_
 - _I. virginica_ have the longest Petal and Sepal on average as compared to the other three species
 
-### Addtional information
-Do note, that there can be **TOO MUCH** information on a single graph. Generally, representing the data on x- and y- axis and grouping the points accordingly by colour is the maximum I would go for any graph.
-
-If I would want to explore another variable that I have collected, I would generate another graph at that point.
-
-
-
-
-
-
-
-
 
 ### Saving graphs
 
@@ -408,6 +396,21 @@ jpeg("FILE_NAME.jpg",quality = 100,width = 1028, height = 1028, units = "px")
 grid.arrange(ggplot_graph1,ggplot_graph2,ncol=2)
 dev.off()
 ```
+
+### Addtional information
+Do note, that there can be **TOO MUCH** information on a single graph. Generally, representing the data on x- and y- axis and grouping the points accordingly by colour is the maximum I would go for any graph.
+
+If I would want to explore another variable that I have collected, I would generate another graph at that point.
+
+
+#### Bad examples of graphs
+
+To illustrate this point, I added another grouping factor of `Sepal.Width` for colour and shifted `Species` to shape.
+
+![bad_too_much_sepal_width](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PLSL_col_bad.jpg)
+
+
+On first glance, you cannot instantly tell many information. This example serves to show that "more isn't always better" and that the way the data is presented would aid in the readability of your point.
 
 
 # End
