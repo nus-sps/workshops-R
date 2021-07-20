@@ -11,7 +11,7 @@ sort: 1
 
 # Loading in iris dataset
 
-For the purposes of this tutorial, we are going to be using the _Iris_ flower dataset introduced by Ronald Fisher in his 1936 paper _The use of multiple measurements in taxonomic problems_.
+For the purposes of this tutorial, we are going to be using the _Iris_ flower dataset introduced by Ronald Fisher in his 1936 paper [_The use of multiple measurements in taxonomic problems_.](https://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1936.tb02137.x)
 
 We can try loading in this built-in dataset in R. Like so:
 
@@ -20,9 +20,9 @@ data("iris")
 ```
 
 ## Inspecting the dataset
-This dataset contains Sepal and Petal length / width of different Species of flowers _Iris setosa_, _versicolor_, and _virginica_
+This dataset contains Sepal and Petal length / width of different Species of flowers _Iris setosa_, _versicolor_, and _virginica_.
 
-We can thus inspect the dataset like this:
+We can take a peek at the dataset like this:
 
 ```R
 head(iris)
@@ -41,40 +41,43 @@ head(iris)
 The next step in exploring datasets is to know and understand what the different variables are referring to, such as Sepal Length, Sepal Width, Petal Lengths and Petal Width!
 
 ### Optional Information
-The dataset numbers are all in centimeters (cm), and the different variables should look foreign to people not well versed in plant morphology. Luckily for us, since this is a well-known dataset, the internet should have figures explaining what each variables mean.
-
+The dataset numbers are all in centimeters (cm), and the different variables should look foreign to people not well versed in plant morphology. Luckily for us, since this is a well-known dataset, the internet has graphics explaining what they are.
 ![iris_variable_explain](https://static.packt-cdn.com/products/9781789539462/graphics/9cede6e3-0932-430a-a17e-d30025eb2b02.png)
 
 How handy! [This website](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781789539462/3/ch03lvl1sec17/text-classification) contains an image on what Sepal / Petal length and widths mean for each row!
 
-## Testing some variable
-Perhaps you have this dataset, you think `Sepal.Length` and `Petal.Width` are related in someway, we can visualise this quickly by using the `plot()` function:
+## Testing a hypothesis
+With this dataset, a hypothesis that we could reasonably come up with is that `Sepal.Length` and `Petal.Width` are related in someway. We can visualise this quickly by using the `plot()` function:
 
 ```R
 plot(iris$Sepal.Length, iris$Petal.Width)
 ```
 ![SLvsPw](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/irisSepalvsPetal.jpg)
 
-Awesome! There seems to be some sort of association. What if we want to explore other combinations of our variables, such as `Sepal.Length` vs `Petal.Length` and so on and so forth? Luckily for us R has a function called `pairs()` to help us! By adding `panel = panel.smooth`, R would help us generate a "smooth" curve to help us better visualise correlations!
+1. `plot()` takes in many arguments, but 2 are necessary for a meaningful plot: *the x and y values*. The arguments must either be provided in that order (x then y, as shown in our example here) or explicitly defined as `x = iris$Sepal.Length, y= iris$Petal.Width` in the brackets.
+2. Alternatively, `plot(iris$Petal.Width ~ iris$Sepal.Width)` would work as well as it takes the form of  `plot(y ~ x)` which is a model formula. 
+3. Secondly, `plot()` also takes an argument of `type` which tells R which type of plot to be drawn, the default is a scatterplot. However, if a line graph is required `plot(x,y, type = 'l')` would produce a line plot.
+
+Awesome! There seems to be some sort of association. What if we want to explore other combinations of our variables, such as `Sepal.Length` vs `Petal.Length` or others? Luckily for us R has a function called `pairs()` to help us! By adding `panel = panel.smooth`, R would help us generate a "smooth" curve to help us better visualise correlations!
 
 ```R
 pairs(iris, panel = panel.smooth)
 ``` 
 ![irisPairsPlot](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/pairsiris.jpg)
 
-It seems that `Petal.Length` and `Petal.Width` has the strongest positive association from each other. This is to be expected as we would expect a flower with a longer petal length to have a longer petal width as well.
+It seems that `Petal.Length` and `Petal.Width` has the strongest positive association with each other. This is to be expected as we would expect a flower with a longer petal length to have a longer petal width as well.
 
 It also seems that `Sepal.Length` and `Petal.Length` have some sort of correlation as well. Lets use these two variables for our examples later!
 
 ## Solidifying our research question
 Before we proceed any further, it is important in any experiment that we have a solid research question in mind. This is because the type of data presented will help answer your research question. 
 
-Lets say we had a basic research question "Are the lengths of the petals associated with the lengths of sepal in _I. setosa_, _I. versicolor_, and _ I. virginica_?" So while we're doing data collection, we collected other variables as well (see table above).
+Lets say we had a basic research question "Are the lengths of the petals associated with the lengths of sepal in _I. setosa_, _I. versicolor_, and _I. virginica_?" So while we're doing data collection, we collected many other variables as well (see table above).
 
-After data collection, we can casually plot `Sepal.Length` against `Petal.Length`.
+After data collection, we can plot `Sepal.Length` against `Petal.Length`.
 ![SLvsPL](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/irisSepalLvsPetalL.jpg)
 
-It seems to me that Petal Length and Sepal Length have a linear positive correlation with each other!
+It seems that Petal Length and Sepal Length do have a linear positive correlation with each other!
 
 ## Beautifying the graphs
 
@@ -120,7 +123,7 @@ iris_PetalLengthvsSepalLength
 ![geompointExample](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PetalLengthvsSepalLength.jpg)
 
 
-Great, this is the exact same graph as above. Except this has **COLOUR**. There are a few things we can do to make this graph look more presentable. For your information, `geom_point()` can take an additional argument to change the shape and size of your dots if they ever look too small! You can experiment with it yourself, it'll look something like this `geom_point(size = 5, shape = 21)`
+Great, this is the exact same graph as above. Except this has **COLOUR**. There are a few things we can do to make this graph look more purposeful. For your information, `geom_point()` can take an additional argument to change the shape and size of your dots if they ever look too small! You can experiment with it yourself, it'll look something like this `geom_point(size = 5, shape = 21)`
 
 - [ ] Label size for the numbers
 - [ ] Naming of X- and Y-axis
@@ -128,7 +131,7 @@ Great, this is the exact same graph as above. Except this has **COLOUR**. There 
 
 
 ### Changing the label size
-The first issue that is very obvious is that the labels on the x- and y-axis are very small and may not be readable by people. So let us change that using `theme()`:
+The first glaring issue is that the labels on the x- and y-axis are very small and may not be easily readable. So let us change that using `theme()`:
 
 ```R
 #Once again, there are two ways of doing this, you can either build the graph in 1 go 
@@ -151,7 +154,6 @@ iris_PetalLengthvsSepalLength
 
 `theme(axis.text=element_text(size=20))` changes the numbers on the x- and y-axis whereas `theme(axis.title=element_text(size=25))` changes the size of the x- and y-axis labels!
 
-So to look at our checklist real quick
 - [x] Label size for the numbers
 - [ ] Naming of X- and Y-axis
 - [ ] Title / subtitle
@@ -177,7 +179,7 @@ iris_PetalLengthvsSepalLength
 ```
 ![Renamed_Axis_include_units](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PetalLengthvsSepalLengthAxisLabels.jpg)
 
-Awesome, now with one look, readers can guess what the graph is about. But to make it even clearer, we will need to add a title or a subtitle to the graph:
+Now with one look, readers can get an idea of what the graph is about. But to make it even clearer, we will need to add a title to the graph:
 
 ```R
 #Because Iris is the genus, when typing it, they need to be italicised this code snippet below will give you an example.
@@ -215,7 +217,7 @@ Cool, our checklist is done!
 
 ### Giving meaning to the graph
 
-Ok we have a decent graph generated, but it does not really tell the reader anything. Linking back to our research question, we want to show that there is a linear association between length of petal and length of sepal of various _Iris_ flower species. The easiest way we can do this is by adding a best-fit linear regression line!
+We have a decent graph generated, but it does not really tell the reader anything immediately. Linking back to our research question, we want to show that there is a linear association between length of petal and length of sepal of various _Iris_ flower species. The easiest way we can do this is by adding a best-fit linear regression line!
 
 ```R
 #Once again, you can do this 
@@ -247,7 +249,7 @@ Let us compare with our base graph from earlier to the one we have now!
 
 ![comparison_base_ggplot](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/comparisonggplotbase.png)
 
-Awesome! With one look, readers can tell exactly what they are looking at and what message you would want them to takeaway! In this case, as `Sepal Length` increases, `Petal Length` increases. 
+With one look, readers can tell exactly what they are looking at and what message you would want them to takeaway! In this case, as `Sepal Length` increases, `Petal Length` increases. This is important, as the use of graphs (and graphics) can greatly assist the audience in learning or understanding the story you want them to take away.
 
 #### Additional info
 
@@ -274,13 +276,13 @@ iris_withlm
 ```
 
 ## Visualising Categorical Variables
-In the previous section, both variables shown are continuous variables. Meaning they could take any number. What if one of the variables is categorical, like `Species`?
+In the previous section, both variables shown are continuous variables, which means they can be any continuous value, like numbers. What if one of the variables is categorical, like `Species`?
 
 In the `pairs()` plot that is provided all the way to the top, you would notice that the `Species` of _Iris_ has some form of correlation with both `Sepal.Length` and `Petal.Length`.
 
-So, if our research question was to investigate the `Sepal.Length` and `Petal.Length` (continuous variable) between `Species` (categorical variables), we can modify some of our code from the previous section to work!
+So, if our research question was to investigate the `Sepal.Length` and `Petal.Length` (continuous variable) between `Species` (categorical variables), we simply need to modify some of our code from the previous section to work!
 
-One of the ways to visualise continous variables against categorical variables, is to use a boxplot.
+One of the ways to visualise continous variables against categorical variables is to use a boxplot.
 
 For the sake of simplicity of the tutorial, I would not be adding `theme()`.
 ```R
@@ -302,7 +304,7 @@ iris_SepalvsSpecies
 
 ### Plotting 2 ggplot graphs in the same window
 
-Oh no problem, we cannot visualise these two graphs at the same time! Your first instinct might be to use `par(mfrow=c(1,2))` but that will not work for `ggplot2` graphs. What we need is `gridExtra`
+Bummer. We cannot visualise these two graphs at the same time! Your first instinct might be to use `par(mfrow=c(1,2))` but that will not work for `ggplot2` graphs. What we need is `gridExtra`
 
 Install `gridExtra` and load it if you have not:
 
@@ -361,7 +363,7 @@ iris_PLSL_col = ggplot(iris, aes(x=Sepal.Length, y = Petal.Length, col = Species
 ```
 ![group_by_species](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PLSL_col.jpg)
 
-Wow! It seems like all three species of _Iris_ are positively associated. With red being _I. Setosa_, green being _I. Versicolor_ and blue being _I. virginica_. There is one thing left! Thats right, the legend size. Lets fix that real quick
+It seems like all three species of _Iris_ are positively associated. With red being _I. Setosa_, green being _I. Versicolor_ and blue being _I. virginica_. There is one thing left! Thats right, the legend size. Lets fix that real quick
 
 ```R
 iris_PLSL_col = iris_PLSL_col + theme(legend.text = element_text(size = 20)) + theme( legend.title = element_text(size = 25))
@@ -372,12 +374,12 @@ iris_PLSL_col
 ```
 ![Rescaled_Legend](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PLSL_col_legend.jpg)
 
-Amazing! With this graph, this looks beautiful. At first glance, anyone can immediately understand the following points:
+We are done! With a quick glance, anyone can immediately understand the following points:
 
 - Each species of _Iris_ flower, the `Petal Length` and `Sepal Length` are positively associated
 - Weak association for _I. setosa_ 
 - Strong association for _I. versicolor_ and _I. virginica_
-- _I. virginica_ have the longest Petal and Sepal on average as compared to the other three species
+- _I. virginica_ have the longest Petal and Sepal on average as compared to the other three species.
 
 
 ### Saving graphs
@@ -415,186 +417,13 @@ To illustrate this point, I added another grouping factor of `Sepal.Width` for c
 ![bad_too_much_sepal_width](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PLSL_col_bad.jpg)
 
 
-On first glance, you cannot instantly tell many information. This example serves to show that "more isn't always better" and that the way the data is presented would aid in the readability of your point.
+With only a quick glance, you cannot tell much. This example serves to show that "more isn't always better" and that the way the data is presented would aid in the readability of your point.
 
 Now, this is a really exagerrated example of what **NOT** to do...
+
+
 ![Why_Did_I_do_dis](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PLSL_col_ascinine.jpg)
 
-Theres just too much text / useless information which could have been in a table and it distracts the reader from the main point of the graph...
+Theres just too much text / useless information which could have been in a table and it distracts the reader from the main point of the graph, notwithstanding the overlapping of text affecting readability.
 
 # End
-
-
-Text can be **bold**, _italic_, or ~~strikethrough~~. [Links](https://github.com) should be blue with no underlines (unless hovered over).
-
-
-There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.
-
-There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs. There should be whitespace between paragraphs.
-
-> There should be no margin above this first sentence.
->
-> Blockquotes should be a lighter gray with a gray border along the left side.
->
-> There should be no margin below this final sentence.
-
-# Header 1
-
-This is a normal paragraph following a header. Bacon ipsum dolor sit amet t-bone doner shank drumstick, pork belly porchetta chuck sausage brisket ham hock rump pig. Chuck kielbasa leberkas, pork bresaola ham hock filet mignon cow shoulder short ribs biltong.
-
-## Header 2
-
-> This is a blockquote following a header. Bacon ipsum dolor sit amet t-bone doner shank drumstick, pork belly porchetta chuck sausage brisket ham hock rump pig. Chuck kielbasa leberkas, pork bresaola ham hock filet mignon cow shoulder short ribs biltong.
-
-### Header 3
-
-```
-This is a code block following a header.
-```
-
-#### Header 4
-
-- This is an unordered list following a header.
-- This is an unordered list following a header.
-- This is an unordered list following a header.
-
-##### Header 5
-
-1. This is an ordered list following a header.
-2. This is an ordered list following a header.
-3. This is an ordered list following a header.
-
-###### Header 6
-
-| What    | Follows  |
-| ------- | -------- |
-| A table | A header |
-| A table | A header |
-| A table | A header |
-
----
-
-There's a horizontal rule above and below this.
-
----
-
-Here is an unordered list:
-
-- Salt-n-Pepa
-- Bel Biv DeVoe
-- Kid 'N Play
-
-And an ordered list:
-
-1. Michael Jackson
-2. Michael Bolton
-3. Michael Bublé
-
-And an unordered task list:
-
-- [x] Create a sample markdown document
-- [x] Add task lists to it
-- [ ] Take a vacation
-
-And a "mixed" task list:
-
-- [ ] Steal underpants
-- ?
-- [ ] Profit!
-
-And a nested list:
-
-- Jackson 5
-  - Michael
-  - Tito
-  - Jackie
-  - Marlon
-  - Jermaine
-- TMNT
-  - Leonardo
-  - Michelangelo
-  - Donatello
-  - Raphael
-
-Definition lists can be used with HTML syntax. Definition terms are bold and italic.
-
-<dl>
-    <dt>Name</dt>
-    <dd>Godzilla</dd>
-    <dt>Born</dt>
-    <dd>1952</dd>
-    <dt>Birthplace</dt>
-    <dd>Japan</dd>
-    <dt>Color</dt>
-    <dd>Green</dd>
-</dl>
-
----
-
-Tables should have bold headings and alternating shaded rows.
-
-| Artist          | Album          | Year |
-| --------------- | -------------- | ---- |
-| Michael Jackson | Thriller       | 1982 |
-| Prince          | Purple Rain    | 1984 |
-| Beastie Boys    | License to Ill | 1986 |
-
-If a table is too wide, it should condense down and/or scroll horizontally.
-
-<!-- prettier-ignore-start -->
-
-| Artist            | Album           | Year | Label       | Awards   | Songs     |
-|-------------------|-----------------|------|-------------|----------|-----------|
-| Michael Jackson   | Thriller        | 1982 | Epic Records | Grammy Award for Album of the Year, American Music Award for Favorite Pop/Rock Album, American Music Award for Favorite Soul/R&B Album, Brit Award for Best Selling Album, Grammy Award for Best Engineered Album, Non-Classical | Wanna Be Startin' Somethin', Baby Be Mine, The Girl Is Mine, Thriller, Beat It, Billie Jean, Human Nature, P.Y.T. (Pretty Young Thing), The Lady in My Life |
-| Prince            | Purple Rain     | 1984 | Warner Brothers Records | Grammy Award for Best Score Soundtrack for Visual Media, American Music Award for Favorite Pop/Rock Album, American Music Award for Favorite Soul/R&B Album, Brit Award for Best Soundtrack/Cast Recording, Grammy Award for Best Rock Performance by a Duo or Group with Vocal | Let's Go Crazy, Take Me With U, The Beautiful Ones, Computer Blue, Darling Nikki, When Doves Cry, I Would Die 4 U, Baby I'm a Star, Purple Rain |
-| Beastie Boys      | License to Ill  | 1986 | Mercury Records | noawardsbutthistablecelliswide | Rhymin & Stealin, The New Style, She's Crafty, Posse in Effect, Slow Ride, Girls, (You Gotta) Fight for Your Right, No Sleep Till Brooklyn, Paul Revere, Hold It Now, Hit It, Brass Monkey, Slow and Low, Time to Get Ill |
-
-<!-- prettier-ignore-end -->
-
----
-
-Code snippets like `var foo = "bar";` can be shown inline.
-
-Also, `this should vertically align` ~~`with this`~~ ~~and this~~.
-
-Code can also be shown in a block element.
-
-```
-var foo = "bar";
-```
-
-Code can also use syntax highlighting.
-
-```javascript
-var foo = "bar";
-```
-
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
-```
-
-```javascript
-var foo =
-  "The same thing is true for code with syntax highlighting. A single line of code should horizontally scroll if it is really long.";
-```
-
-Inline code inside table cells should still be distinguishable.
-
-| Language   | Code               |
-| ---------- | ------------------ |
-| Javascript | `var foo = "bar";` |
-| Ruby       | `foo = "bar"`      |
-
----
-
-Small images should be shown at their actual size.
-
-![Octocat](https://github.githubassets.com/images/icons/emoji/octocat.png)
-
-Large images should always scale down and fit in the content container.
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
-
-```
-This is the final element on the page and there should be no margin below this.
-```
