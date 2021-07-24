@@ -9,7 +9,11 @@ sort: 2
 
 **About this tutorial**: This is essentially the same example of the R tutorial but repurposed to make use of Python; specifically with the `seaborn` and `matplotlib` packages.
 
-# Importing relevant packages
+# Section 1: Scatterplots, Boxplots and Grouping by Colour
+
+## Scatterplots
+
+### Importing relevant packages
 For this tutorial, we would need to import the following python packages:
 
 ```python
@@ -18,7 +22,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 ```
 
-# Loading in iris dataset
+### Loading in iris dataset
 
 For the purposes of this tutorial, we are going to be using the _Iris_ flower dataset introduced by Ronald Fisher in his 1936 paper [_The use of multiple measurements in taxonomic problems_.](https://onlinelibrary.wiley.com/doi/10.1111/j.1469-1809.1936.tb02137.x)
 
@@ -29,7 +33,7 @@ There are various ways of loading in the iris dataset in python, but let us load
 iris = pd.read_csv('https://raw.githubusercontent.com/darren1998s/darren1998s.github.io/1e6564c4a3f501a980b0dc64f943457928b47d8a/iris.csv', index_col=None)
 ```
 
-## Inspecting the dataset
+### Inspecting the dataset
 This dataset contains Sepal and Petal length / width of different Species of flowers _Iris setosa_, _versicolor_, and _virginica_.
 
 We can take a peek at the dataset like this:
@@ -56,7 +60,7 @@ The dataset numbers are all in centimeters (cm), and the different variables sho
 
 How handy! [This website](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781789539462/3/ch03lvl1sec17/text-classification) contains an image on what Sepal / Petal length and widths mean for each row!
 
-## Testing a hypothesis
+## Pairs plot: Testing a hypothesis
 With this dataset, a hypothesis that we could reasonably come up with is that `Sepal.Length` and `Petal.Width` are related in someway. We can visualise this quickly by using the `plt.plot()` function from `matplotlib`, which we abbreviated as `plt`:
 
 ```python
@@ -82,7 +86,7 @@ It seems that `Petal.Length` and `Petal.Width` has the strongest positive associ
 
 It also seems that `Sepal.Length` and `Petal.Length` have some sort of correlation as well. Lets use these two variables for our examples later!
 
-## Solidifying our research question
+### Solidifying our research question
 Before we proceed any further, it is important in any experiment that we have a solid research question in mind. This is because the type of data presented will help answer your research question. 
 
 Lets say we had a basic research question "Are the lengths of the petals associated with the lengths of sepal in _I. setosa_, _I. versicolor_, and _I. virginica_?" So while we're doing data collection, we collected many other variables as well (see table above).
@@ -97,7 +101,7 @@ plt.show()
 
 It seems that Petal Length and Sepal Length do have a linear positive correlation with each other!
 
-## Beautifying the graphs
+## Scatterplot and Trendlines with seaborn
 
 If you were Ronald Fisher and wanted to present about the positive correlation of Sepal Length with Petal Length by using the graph presented above, you will probably not succeed in getting your point across.
 
@@ -179,7 +183,9 @@ Let us compare with our base graph from earlier to the one we have now!
 
 With one look, readers can tell exactly what they are looking at and what message you would want them to takeaway! In this case, as `Sepal Length` increases, `Petal Length` increases. This is important, as the use of graphs (and graphics) can greatly assist the audience in learning or understanding the story you want them to take away.
 
-## Visualising Categorical Variables
+## Boxplots
+### Visualising Categorical Variables
+
 In the previous section, both variables shown are continuous variables, which means they can be any continuous value, like numbers. What if one of the variables is categorical, like `Species`?
 
 In the `sns.pairplot()` plot that is provided all the way to the top, you would notice that the `Species` of _Iris_ has some form of correlation with both `Sepal.Length` and `Petal.Length`.
@@ -196,7 +202,7 @@ sns.boxplot(x="Species", y="Sepal.Length", data=iris)
 plt.show()
 ```
 
-### Plotting 2 ggplot graphs in the same window
+### Plotting 2 boxplots in the same window
 
 ![mergedboxplotP](https://raw.githubusercontent.com/darren1998s/darren1998s.github.io/main/assets/images/Python/mergedbox.png)
 
@@ -225,7 +231,7 @@ It is clear that there is some form of association between both `Sepal.Length` a
 
 how do we combine all these information together into a single graph?
 
-## Visualising a continuous variable vs continous variable grouped by categorical variable data
+## Scatterplot: Grouping by Colour
 
 From two sections ago, we could see, on average across all species of _Iris_ flowers, `Sepal.Length` is positively associated with `Petal.Length`. However, we have to be careful with this conclusion as it is prone to **ecological fallacy**. As we are making conclusions on a group and we might conclude this same trend **within** each species of _Iris_ flowers.
 
@@ -256,7 +262,7 @@ Do note, that there can be **TOO MUCH** information on a single graph. Generally
 If I would want to explore another variable that I have collected, I would generate another graph at that point.
 
 
-#### Bad examples of graphs
+### Bad examples of graphs
 
 To illustrate this point, I added another grouping factor of `Sepal.Width` for colour and shifted `Species` to shape.
 
