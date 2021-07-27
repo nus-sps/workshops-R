@@ -276,6 +276,169 @@ Now, this is a really exagerrated example of what **NOT** to do...
 
 ![Why_Did_I_do_dis](https://raw.githubusercontent.com/nus-sps/workshops-R/main/assets/images/iris_PLSL_col_ascinine.jpg)
 
-Theres just too much text / useless information which could have been in a table and it distracts the reader from the main point of the graph, notwithstanding the overlapping of text affecting readability...
+Theres just too much text / useless information which could have been in a table and it distracts the reader from the main point of the graph, notwithstanding the overlapping of text affecting readability.
+
+# Section 2: Histograms, Barplots and Grouping by Types
+
+In this section, I am going to attempt to visualise data from the `birthwt` dataset, which was collected at Baystate Medical Center, Springfield, Mass in 1986.
+
+## Histograms
+
+### Loading in birthwt dataset 
+
+There are various ways of loading in the iris dataset in python, but let us load in our own csv file to simulate using our own data, using `Pandas`.
+
+```python
+#I hosted the same dataset exported from R onto my github for easy access
+birthwt = pd.read_csv('https://raw.githubusercontent.com/darren1998s/darren1998s.github.io/main/birthwt.csv', index_col=None)
+birthwt
+```
+
+|  | low | age | lwt | race | smoke | ptl | ht | ui | ftv | bwt|
+|--| --- | --- | --- | ---- | ----- | --- | -- | -- | --  | -- |
+| 85  | 0| 19  | 182 | 2    |   0   |     0 | 0  |1   |0    |2523|
+| 86  | 0| 33  | 155 | 3    |   0   |     0 | 0  |0   |3    |2551|
+| 87  | 0| 20  | 105 | 1    |   1   |     0 | 0  |0   |1    |2557|
+| 88  | 0| 21  | 108 | 1    |   1   |     0 | 0  |1   |2    |2594|
+| 89  | 0| 18  | 107 | 1    |   1   |     0 | 0  |1   |0    |2600|
+| 91  | 0| 21  | 124 | 3    |   0   |     0 | 0  |0   |0    |2622|
+
+### Optional Information
+
+According to the [R documentation](https://www.rdocumentation.org/packages/MASS/versions/7.3-54/topics/birthwt), these are what the variables represent:
+
+- `low` indicator of birth weight less than 2.5 kg.
+- `age` mother's age in years.
+- `lwt` mother's weight in pounds at last menstrual period.
+- `race` mother's race (1 = white, 2 = black, 3 = other).
+- `smoke` smoking status during pregnancy (0 = not smoking, 1 = smoking).
+- `ptl` number of previous premature labours.
+- `ht` history of hypertension.
+- `ui` presence of uterine irritability.
+- `ftv` number of physician visits during the first trimester.
+- `bwt` birth weight in grams.
+
+### Solidifying our research question
+Just like in the previous section, it is important in any experiment that we have a solid question in mind. For the sake of showcasing histograms and grouped barcharts, we can have a basic research question of "Are the birth weight (g) `bwt` of babies affected by the smoking status of mothers during pregnancy `smoke`?"
+
+
+First, a histogram of `bwt` can be plotted using `sns.displot`:
+
+```python
+#Regular
+sns.displot(birthwt, x="bwt").set(title='Frequency of Baby Birth Weight (g)')
+plt.show()
+```
+
+![basic_histPy](https://raw.githubusercontent.com/darren1998s/darren1998s.github.io/main/assets/images/Python/Bar%20Hist/basic_histPy.png)
+
+In order to split `bwt` into two categories of smokers `smoke = 0` and `smoke = 1`, the following code can be used:
+
+```python
+#Grouped
+sns.displot(birthwt, x="bwt",multiple="dodge", col = 'smoke')
+plt.tight_layout()
+plt.show()
+```
+
+![grouped_histpy](https://raw.githubusercontent.com/darren1998s/darren1998s.github.io/main/assets/images/Python/Bar%20Hist/grouped_histpy.png)
+
+As you can tell, people might not instantly understand what it means by `smoke = 0` or `smoke = 1`, so we would need to change the categories a little bit using `pandas`.
+
+```python
+#Change dataframe easier:
+birthwt.loc[birthwt['smoke'] == 0, 'Smoking Status'] = 'No Smoke'
+birthwt.loc[birthwt['smoke'] == 1, 'Smoking Status'] = 'Smoke'
+birthwt.head()
+```
+
+|  | low | age | lwt | race | smoke | ptl | ht | ui | ftv | bwt| Smoking Status |
+|--| --- | --- | --- | ---- | ----- | --- | -- | -- | --  | -- | ------ |
+| 85  | 0| 19  | 182 | 2    |   0   |     0 | 0  |1   |0    |2523| No Smoke |
+| 86  | 0| 33  | 155 | 3    |   0   |     0 | 0  |0   |3    |2551| No Smoke |
+| 87  | 0| 20  | 105 | 1    |   1   |     0 | 0  |0   |1    |2557| Smoke |
+| 88  | 0| 21  | 108 | 1    |   1   |     0 | 0  |1   |2    |2594| Smoke |
+| 89  | 0| 18  | 107 | 1    |   1   |     0 | 0  |1   |0    |2600| Smoke |
+| 91  | 0| 21  | 124 | 3    |   0   |     0 | 0  |0   |0    |2622| No Smoke |
+
+```python
+sns.displot(birthwt, x="bwt",multiple="dodge", col = 'Smoking Status')
+plt.tight_layout()
+plt.show()
+```
+
+![renamed_grouped_histpy](https://raw.githubusercontent.com/darren1998s/darren1998s.github.io/main/assets/images/Python/Bar%20Hist/renamed_grouped_histpy.png)
+
+## Histograms: grouping with colours
+
+What if the comparison of using a grouped histogram is not that obvious? It might be better to put them all in the same axis and use colour to separate the two. In this case, we would need to make some adjustments.
+
+The important thing to take not of here is while calling the `sns.displot` function. We have the `multiple = 'dodge'` here so that histogram are not overlapping with each other.
+
+```python
+#Colour change
+sns.displot(birthwt, x="bwt",multiple="dodge", hue = 'Smoking Status')
+plt.show()
+```
+
+![grouped_hist_colourpy](https://raw.githubusercontent.com/darren1998s/darren1998s.github.io/main/assets/images/Python/Bar%20Hist/grouped_hist_colourpy.png)
+
+### Histogram Presentations: Colour Selection / Focusing
+
+In presentations, sometimes you would need to highlight different groups in this histogram, we are going to look at the argument `palette` to do so!
+
+The `palette` argument uses a dictionary to help assign colour values to the different groups of data.
+
+```python
+#Colour change
+sns.displot(birthwt, x="bwt",multiple="dodge", hue = 'Smoking Status', palette={'Smoke': "C0", 'No Smoke':'lightgrey'})
+plt.show()
+```
+
+![grouped_hist_colourpy_palette1](https://raw.githubusercontent.com/darren1998s/darren1998s.github.io/main/assets/images/Python/Bar%20Hist/grouped_hist_colourpy_palette1.png)
+
+This way, we can highlight just the Non-Smokers!
+
+Likewise, if we want to highlight the Smokers, we can change the `palette` argument like so:
+
+```python
+#Colour change
+sns.displot(birthwt, x="bwt",multiple="dodge", hue = 'Smoking Status', palette={'No Smoke': "C0", 'Smoke':'lightgrey'})
+plt.show()
+```
+
+![grouped_hist_colourpy_palette2](https://raw.githubusercontent.com/darren1998s/darren1998s.github.io/main/assets/images/Python/Bar%20Hist/grouped_hist_colourpy_palette2.png)
+
+## Grouped Bar Charts
+
+Similarly to Section 1, there is a chance that we fall into an **ECOLOGICAL FALLACY**. Hence, we would need to group some of our data together. In our tutorial, we are going to group them by `race` of mothers.
+
+
+Just like our `smoke` variable, the race of the mother are also in `1`, `2` and `3`. We would need to refactor that using `pandas` like before!
+
+```python
+#Factoring Race
+birthwt.loc[birthwt['race'] == 1, 'Race'] = 'White'
+birthwt.loc[birthwt['race'] == 2, 'Race'] = 'Black'
+birthwt.loc[birthwt['race'] == 3, 'Race'] = 'Other'
+```
+
+|  | low | age | lwt | race | smoke | ptl | ht | ui | ftv | bwt| Smoking Status     | Race  |
+|--| --- | --- | --- | ---- | ----- | --- | -- | -- | --  | -- | ------     | ----- |
+| 85  | 0| 19  | 182 | 2    |   0   |     0 | 0  |1   |0    |2523| No Smoke | Black |
+| 86  | 0| 33  | 155 | 3    |   0   |     0 | 0  |0   |3    |2551| No Smoke | Other |
+| 87  | 0| 20  | 105 | 1    |   1   |     0 | 0  |0   |1    |2557| Smoke    | White |
+| 88  | 0| 21  | 108 | 1    |   1   |     0 | 0  |1   |2    |2594| Smoke    | White |
+| 89  | 0| 18  | 107 | 1    |   1   |     0 | 0  |1   |0    |2600| Smoke    | White |
+| 91  | 0| 21  | 124 | 3    |   0   |     0 | 0  |0   |0    |2622| No Smoke | Other |
+
+The function `catplot()` will be used to create categorical plots, `kind` argument will make seaborn plot a barchart. In order to get errorbars, the argument `ci` can be specified. `ci` stands for confidence intervals and the default argument is around 1.96 standard deviations. By specifying `ci = 68`, the errorbar now shows roughly around 1 standard error around the mean.
+
+```python
+sns.catplot(x="Race", y="bwt", hue="Smoking Status", kind="bar", ci = 68, capsize=.1, data=birthwt)
+plt.show()
+```
+
+![barchartpy](https://raw.githubusercontent.com/darren1998s/darren1998s.github.io/main/assets/images/Python/Bar%20Hist/barchartpy.png)
 
 # End
