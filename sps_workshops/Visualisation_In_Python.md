@@ -9,6 +9,8 @@ sort: 2
 
 **About this tutorial**: This is essentially the same example of the R tutorial but repurposed to make use of Python; specifically with the `seaborn` and `matplotlib` packages.
 
+**CoLab Link**: This tutorial is also available in [Google CoLab](https://colab.research.google.com/drive/1crs8BrBetOhphMgk_j0CjRhLCjzhbht-?usp=sharing)
+
 # Section 1: Scatterplots, Boxplots and Grouping by Colour
 
 ## Scatterplots
