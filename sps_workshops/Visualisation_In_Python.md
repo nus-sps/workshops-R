@@ -11,6 +11,8 @@ sort: 2
 
 **CoLab Link**: This tutorial is also available in [Google CoLab](https://colab.research.google.com/drive/1crs8BrBetOhphMgk_j0CjRhLCjzhbht-?usp=sharing)
 
+**Other ways of visualizing data**: Since this page is not exhaustive, you can check out [data to viz](data-to-viz.com) for more ways on plotting graphs!
+
 # Section 1: Scatterplots, Boxplots and Grouping by Colour
 
 ## Scatterplots
