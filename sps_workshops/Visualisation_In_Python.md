@@ -24,6 +24,7 @@ For this tutorial, we would need to import the following python packages:
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from scipy import stats # We will be doing basal statistics
 ```
 
 ### Loading in iris dataset
@@ -231,7 +232,22 @@ plt.show()
 ```
 ![grid_arrange_boxplotsP](https://raw.githubusercontent.com/darren1998s/darren1998s.github.io/main/assets/images/Python/axis4plot.png)
 
-It is clear that there is some form of association between both `Sepal.Length` and `Petal.Length` and `Species`, with _I. virginicca_ having the longest `Petal.Length` and `Sepal.Length` and _I. Setosa_ having the shortest.
+It is clear that there is some form of association between both `Sepal.Length` and `Petal.Length` and `Species`, with _I. virginicca_ having the longest `Petal.Length` and `Sepal.Length` and _I. setosa_ having the shortest.
+
+We can further prove that the means of `Sepal.Length` between _I. setosa_ and _I. versicolor_ are significantly different by running a t-test. (This is assuming you have done your due diligence in confirming the assumptions used for t-test)
+
+```python
+# We will need to split the data into the 2 iris species first
+# This can be done by pandas subsetting
+setosa = iris[(iris['Species'] == 'setosa')]
+versicolor = iris[(iris['Species'] == 'versicolor')]
+
+stats.ttest_ind(setosa['Sepal.Length'], versicolor['Sepal.Length'])
+```
+```
+>>> Ttest_indResult(statistic=-10.52098626754911, pvalue=8.985235037487079e-18)
+```
+The result tells us that the pvalue is `8*10^-8` and that means it is statistically significant. This means that the mean sepal length between the two iris species are different!
 
 how do we combine all these information together into a single graph?
 
@@ -444,5 +460,21 @@ plt.show()
 ```
 
 ![barchartpy](https://raw.githubusercontent.com/darren1998s/darren1998s.github.io/main/assets/images/Python/Bar%20Hist/barchartpy.png)
+
+We can also do a statistical test called a one-way ANOVA (assuming you have done your due dilligence) to test if the mean birthweight of babies between smoking and non-smoking mothers are significantly different.
+
+```python
+# Once again, we need to subset into the birthweight of smoking and non-smoking mothers
+no_smoke_bwt = birthwt[birthwt['Smoking Status'] == 'No Smoke']['bwt']
+smoke_bwt = birthwt[birthwt['Smoking Status'] == 'Smoke']['bwt']
+
+
+# This is the code to do 1 way anova
+stats.f_oneway(no_smoke_bwt,smoke_bwt)
+```
+```
+F_onewayResult(statistic=7.03784287823582, pvalue=0.008666726371019166)
+```
+The pvalue here is 0.009 < 0.05. This tells us that the difference in the baby birthweight are significantly different between smoking and non-smoking mothers!
 
 # End
